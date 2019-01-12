@@ -66,3 +66,18 @@ RNN consumes input sequence element by element, and passes activation values fro
 Simplified notation:
 
 ![RNN Forward Propagation: Simplified Notation](docs/img/RNN-simplified-notation.png)
+
+### Backpropagation through time
+
+Backpropagation pushes losses backwards through the network, calculating derivatives of training parameters and then applying gradient descent to optimize parameters to find the optimal fit.
+
+Defining a loss function, E.g. a cross-entropy loss as in a logistic regression:
+```
+L<t>(^y<t>, y<t>) = -y(t) * log(^y(t)) - (1 - y(t)) * log(1 - ^y(t))
+
+# a total loss:
+
+L(^y<t>, y<t>) = Sum(L<t>(^y<t>, y<t>))
+``
+
+![RNN: Backpropagation through time](docs/img/RNN-backpropagation-through-time.png)
