@@ -78,6 +78,6 @@ L<t>(^y<t>, y<t>) = -y(t) * log(^y(t)) - (1 - y(t)) * log(1 - ^y(t))
 # a total loss:
 
 L(^y<t>, y<t>) = Sum(L<t>(^y<t>, y<t>))
-``
+```
 
 ![RNN: Backpropagation through time](docs/img/RNN-backpropagation-through-time.png)
