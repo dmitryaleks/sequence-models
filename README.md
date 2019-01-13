@@ -99,3 +99,7 @@ Examples are as follows:
 One-to-many and many-to-many architecture are exemplified in the following diagram:
 
 ![RNN: architecture types](docs/img/RNN-architecure-types.png)
+
+Below is the full summary of RNN types:
+
+![RNN: summary of types](docs/img/RNN-summary-of-types.png)
