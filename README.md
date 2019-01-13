@@ -81,3 +81,21 @@ L(^y<t>, y<t>) = Sum(L<t>(^y<t>, y<t>))
 ```
 
 ![RNN: Backpropagation through time](docs/img/RNN-backpropagation-through-time.png)
+
+### Different types of RNN architectures
+
+In general case, the length of the input sequence may be different from the length of the ouput sequence.
+
+Examples are as follows:
+
+  * many-to-one: in a Sentiment Classification problem the input is the text of an arbitrary length, while the output is a single integer value indicating the class (E.g. binary 0/1, or more classes).
+
+  * one-to-one: temperature in degerees Celsius mapped to a human readable classification (cold, warm, hot);
+
+  * one-to-many: music generation with the input of a genre and the output is the sequence of notes of the musical piece;
+
+  * many-to-many: machine translation, where RNN starts with "encoder" part that consumes the input sequence of words, followed by a "decoder" part of lenght "b", where "b" is the amount of the words in the output sequence;
+
+One-to-many and many-to-many architecture are exemplified in the following diagram:
+
+![RNN: architecture types](docs/img/RNN-architecure-types.png)
