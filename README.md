@@ -103,3 +103,39 @@ One-to-many and many-to-many architecture are exemplified in the following diagr
 Below is the full summary of RNN types:
 
 ![RNN: summary of types](docs/img/RNN-summary-of-types.png)
+
+### Language modeling and sequence generation
+
+<https://www.coursera.org/learn/nlp-sequence-models/lecture/gw1Xw/language-model-and-sequence-generation>
+
+Language modeling entails:
+
+  * using a large corpus of text as a training set:
+  * tokenizing sentences and adding <EOS> character (End-of-Sentence) at the end of each sentence;
+  * unknown words can be encoded with a special <UNK> token.
+
+#### Speech recognition
+
+Speech recognition model estimates probability of each input sentence in order to pick the most likely one.
+
+In order to do so it consumes words from the input sequence one by one and estimates a probability of each word being in a given position in a sentence.
+
+RNN would be architectured to carry over all previously recognized words to the next unit, where each unit is trying to pick the most probable next word in a sentence given a preceeding sequence of words.
+
+Softmax is a suitable loss function for this task:
+```
+L(^y<t>, y<t>) = -sum<i>(y(i)<t> * log(^y(i)<t>))
+
+# overall loss:
+
+L = sum<t>(L(^y<t>, y<t>))
+```
+
+After training such model on a large corpus of text, it will be able to give probabilities of a given word coming in an input sequence.
+
+This enables calculation of sentence probabilities as follows:
+```
+P(y<1>, y<2>, y<3>) = P(y<1>) * P(y<2> | y<1>) * P(y<3> | y<1>, y<2>)
+```
+
+![RNN: language model](docs/img/RNN-language-model.png)
