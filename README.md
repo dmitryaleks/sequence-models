@@ -1,8 +1,10 @@
 # Sequence Models
 
-Examples of sequences: text, speech, video.
+Examples of sequences: text, speech, financial time series.
 
 ## Notation
+
+<https://www.coursera.org/learn/nlp-sequence-models/lecture/aJT8i/notation>
 
 Eleents of the input sequence:
 ```
@@ -47,6 +49,8 @@ Each element (word) of the input example (sequence of words) is than represented
 
 ## Recurrent Neural Networks
 
+<https://www.coursera.org/learn/nlp-sequence-models/lecture/ftkzt/recurrent-neural-network-model>
+
 Applying a standard neural network to a sequence data is problematic due to:
   - varying lenght of input sequences (different examples have different lenghts);
   - it doesn't take element positions into account, so there is a loss of information.
@@ -69,6 +73,8 @@ Simplified notation:
 
 ### Backpropagation through time
 
+<https://www.coursera.org/learn/nlp-sequence-models/lecture/bc7ED/backpropagation-through-time>
+
 Backpropagation pushes losses backwards through the network, calculating derivatives of training parameters and then applying gradient descent to optimize parameters to find the optimal fit.
 
 Defining a loss function, E.g. a cross-entropy loss as in a logistic regression:
@@ -83,6 +89,8 @@ L(^y<t>, y<t>) = Sum(L<t>(^y<t>, y<t>))
 ![RNN: Backpropagation through time](docs/img/RNN-backpropagation-through-time.png)
 
 ### Different types of RNN architectures
+
+<https://www.coursera.org/learn/nlp-sequence-models/lecture/BO8PS/different-types-of-rnns>
 
 In general case, the length of the input sequence may be different from the length of the ouput sequence.
 
@@ -139,3 +147,27 @@ P(y<1>, y<2>, y<3>) = P(y<1>) * P(y<2> | y<1>) * P(y<3> | y<1>, y<2>)
 ```
 
 ![RNN: language model](docs/img/RNN-language-model.png)
+
+### Sampling novel sequences from trained models
+
+<https://www.coursera.org/learn/nlp-sequence-models/lecture/MACos/sampling-novel-sequences>
+
+First we train a network as usual, and as the result obtain a "language model" which is essentially is a set of probabilities for a certain word to appear within a certain context built based on the input text corpus (E.g. as the first word, or after a certain sequence of words).
+
+This allows us to generate new sentences as follows by means of the process called "sampling". It works as follows:
+
+  * first, generate the first word by choosing an element from the probability distribution that has resulted from the model training (E.g. by using "numpy.random.choice";
+
+  * for each subseqent step, carry over the sequence from the previous step to be used as an input and again generate a random choice according to the probability distribution learned by the model.
+
+Sampling process is illustrated in the diagram below:
+
+![RNN: Sampling a sequence from a trained RNN](docs/img/RNN-sampling-sequence.png)
+
+In general, there are two language models:
+  * word-level (conventional);
+  * character-level.
+
+Word-level models are prevalent.
+
+Character-level models are more demanding in terms of training costs, but has an advantage that it can handle unknown words. Those are sometimes more suitable for some specialized applications, E.g. where unknown words come up often.
