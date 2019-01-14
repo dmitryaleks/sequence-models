@@ -171,3 +171,37 @@ In general, there are two language models:
 Word-level models are prevalent.
 
 Character-level models are more demanding in terms of training costs, but has an advantage that it can handle unknown words. Those are sometimes more suitable for some specialized applications, E.g. where unknown words come up often.
+
+### Vanishing gradient problem when training RNN
+
+<https://www.coursera.org/learn/nlp-sequence-models/lecture/PKMRR/vanishing-gradients-with-rnns>
+
+Vanishing gradient problem is the phenomenon in which during backpropagation errors coming from later elements in the model (E.g. last layers) are not affecting earlier layers enough (E.g. first layer), i.e. the influence is vanishing.
+
+As an example, in Natural Language Processing it is possible to have a sentence that has grammatically connected elements that are far apart (E.g. a noun and a corresponding pronous that are both either singular or plural). Vanishing gradient then would result in little regard for those related elements of the sequence as they simply happened to be too far apart.
+
+Unless addressed, vanishing gradient problem leads to RNNs not being able to capture long range dependencies in input sequences.
+
+This problem is different from "Exploding Gradients" in conventional neural networks, where trained parameters blow up, often to NaN values due to numerical overflow. "Gradient Clipping" technique is a relatively robust solution that helps for it (gradient vector rescaling according to some maximum values).
+
+Vanishing gradient problem is more intricate and requires more elaborate solution.
+
+![RNN: Vanishing gradient](docs/img/RNN-vanishing-gradient.png)
+
+### Gated Recurrent Unit (GRU)
+
+<https://www.coursera.org/learn/nlp-sequence-models/lecture/agZiL/gated-recurrent-unit-gru>
+
+GRU is a modification to the RNN hidden layer, which makes it better to capture long-range connections and helps a lot with the vanishing gradient problem.
+
+A simplified GRU has a notion of a memory cell (C) that is used to carry some important information throughout steps (E.g. whether the topic noun is singular or plural in an NLP task). Memory cell is subject to a "gating" in which a gate operation is applied to the memory cell at every step. Gate operation either takes a newly candidate for the memory cell value or takes pick a memory cell value from the previous step.
+
+Both memory cell value calculation and gate calculation contain trainale parameters and therefore are fit to the training set during the training phase. Training of those parameters results in picking up the most useful values for the memory cell (C) and caryying them for as long as it is required to get the best fit for the training set.
+
+A simplified GRU can be depicted as follows:
+
+![RNN: Simplified GRU](docs/img/RNN-simplified-GRU.png)
+
+Full GRU can be depicted as follows (note a new Gamma_r term that captures relevance of a memory cell value from the previous step to a subsequent step):
+
+![RNN: Simplified GRU](docs/img/RNN-full-GRU.png)
