@@ -258,3 +258,21 @@ Note the "a_backwards" activations in the formula.
 NLP problems are commonly solved with RNN that use LSTM as building blocks.
 
 One downside of BRNN is that the whole sequence needs to be consumed in order to make predictions (i.e. future data elements matter).
+
+### Deep RNNs
+
+<https://www.coursera.org/learn/nlp-sequence-models/lecture/ehs0S/deep-rnns>
+
+For some problems it is beneficial to stack multiple layers of RNNs together to get an even deeper model.
+
+Even three layers of RNN would be considered a deep network due to a temporal component of each individual layer.
+
+
+Notes:
+  * individual blocks in RNNs could be of a standard type, as well as of GRU or LSTM type;
+  * a deep RNN network can also be bidirectional;
+  * RNN are computationally expensive by themselves, and adding layers makes them even more expensive.
+
+Deep RNN example is as follows:
+
+![RNN: deep network example](docs/img/RNN-deep-network-example.png)
