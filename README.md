@@ -231,3 +231,30 @@ LSTM can be expressed in a form of a diagram as follows:
 ![LSTM: block diagram](docs/img/LSTM-block-diagram.png)
 
 Note that when a series of LSTM units are connected lineraly, it is clear that the memory cell can carry some usefull information across wide ranges therefore enabling learning long range connections in sequences.
+
+### Bidirectional RNN (BRNN)
+
+<https://www.coursera.org/learn/nlp-sequence-models/lecture/fyXnn/bidirectional-rnn>
+
+Bidirectional RNN allows at any point in time (in sequence) taking information from both earlier and later elements in the sequence.
+
+Motivation for BRNN is to use the information from future points in the sequence to draw conclusion with regard to earlier elements.
+
+For example, BRNN is helpful when trying to figure out whether the third word in the following example is a person's name or not:
+
+![RNN: motivation for BRNN](docs/img/RNN-motivation-for-BRNN.png)
+
+Bidirectional RNN create an acyclic graph by adding extra blocks and connections that allow data to flow backwards (note the elements highlighted in green in the diagrem below):
+
+![RNN: bidirectional](docs/img/RNN-bidirectional.png)
+
+Also note that prediction at point "t" in BRNN is calculated as follows:
+```
+^y<t> = g(W_y(a_forward<t>, a_backward<t>) + b_y)
+```
+
+Note the "a_backwards" activations in the formula.
+
+NLP problems are commonly solved with RNN that use LSTM as building blocks.
+
+One downside of BRNN is that the whole sequence needs to be consumed in order to make predictions (i.e. future data elements matter).
