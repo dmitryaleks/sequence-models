@@ -205,3 +205,29 @@ A simplified GRU can be depicted as follows:
 Full GRU can be depicted as follows (note a new Gamma_r term that captures relevance of a memory cell value from the previous step to a subsequent step):
 
 ![RNN: Simplified GRU](docs/img/RNN-full-GRU.png)
+
+### LSTM
+
+<https://www.coursera.org/learn/nlp-sequence-models/lecture/KXoay/long-short-term-memory-lstm>
+
+LSTM (Long Short Term Memory) is a more powerfull alternative to GRU that allows learning long range connections in sequences.
+
+LSTM has three gates instead of two in GRU (Update Gate and Reelvance Gate). Those are:
+  * update gate (G_u);
+  * forget gate (G_f);
+  * output gate (G_o).
+
+Notes that gates "G" as well as memory cell "C" can be multi-dimensional (i.e. a memory cell can carry lots of information).
+
+
+Equasions governing LSTM are on the right in the figure below:
+
+![LSTM: basic equasions](docs/img/LSTM-equasions.png)
+
+It is worth noting that LSTMs have been invented before GRU, where the latter came as a simplified model. There is no universal rule on when to pick up LSTM over GRU. GRU are cheaper to train and therefore can be used in larger networks. By default LSTM is a proven choice.
+
+LSTM can be expressed in a form of a diagram as follows:
+
+![LSTM: block diagram](docs/img/LSTM-block-diagram.png)
+
+Note that when a series of LSTM units are connected lineraly, it is clear that the memory cell can carry some usefull information across wide ranges therefore enabling learning long range connections in sequences.
