@@ -2,3 +2,4 @@
 *.swp
 *.sw*
 .idea/*
+__pycache__

@@ -1,5 +1,7 @@
 # Sequence Models
 
+[![Build Status](https://travis-ci.com/dmitryaleks/sequence-models.svg?branch=master)](https://travis-ci.com/dmitryaleks/sequence-models)
+
 Examples of sequences: text, speech, financial time series.
 
 ## Notation
@@ -276,3 +278,8 @@ Notes:
 Deep RNN example is as follows:
 
 ![RNN: deep network example](docs/img/RNN-deep-network-example.png)
+
+### Sample implementation
+
+A basic RNN cell implemented in Python using numpy library:
+[Basic RNN cell in Python](rnn/rnn_cell_forward.py)
