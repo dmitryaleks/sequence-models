@@ -1,9 +1,9 @@
 import numpy as np
-from .rnn_utils import softmax
+from rnn.rnn_utils import softmax
 
 def rnn_cell_forward(xt, a_prev, parameters):
     """
-    Implements a single forward step of the RNN-cell as described in Figure (2)
+    Implements a single forward step of the RNN-cell.
 
     Arguments:
     xt -- your input data at timestep "t", numpy array of shape (n_x, m).
