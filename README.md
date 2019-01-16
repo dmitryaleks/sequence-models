@@ -281,5 +281,13 @@ Deep RNN example is as follows:
 
 ### Sample implementation
 
+Implementations below are based on the following Coursera Python Notebook:
+
+[Building RNN step by step](notebooks/building-rnn-step-by-step.md)
+
+Online version:
+<https://tjaxlggwxiafkpcnxzjsmm.coursera-apps.org/notebooks/Week%201/Building%20a%20Recurrent%20Neural%20Network%20-%20Step%20by%20Step/Building%20a%20Recurrent%20Neural%20Network%20-%20Step%20by%20Step%20-%20v3.ipynb#>
+
 A basic RNN cell implemented in Python using numpy library:
-[Basic RNN cell in Python](rnn/rnn_cell_forward.py)
+
+[Basic RNN cell (Python with numpy)](rnn/rnn_cell_forward.py)
