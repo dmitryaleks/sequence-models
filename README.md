@@ -279,6 +279,14 @@ Deep RNN example is as follows:
 
 ![RNN: deep network example](docs/img/RNN-deep-network-example.png)
 
+### Gradient Clipping
+
+GC is a technique that helps to avoid the "Exploding Gradients" problem.
+
+Exploding Gradients result in gradient values taking extremely large numbers.
+
+To avoid this gradient clipping is simply truncating gradient value to be within a given [-N, N] range.
+
 ### Sample implementation
 
 Implementations below are based on the following Coursera Python Notebook:
