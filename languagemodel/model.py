@@ -1,7 +1,4 @@
-import numpy as np
 from .utils import *
-import random
-
 
 def clip(gradients, maxValue):
     '''
@@ -18,11 +15,9 @@ def clip(gradients, maxValue):
     dWaa, dWax, dWya, db, dby = gradients['dWaa'], gradients['dWax'], gradients['dWya'], gradients['db'], gradients[
         'dby']
 
-    ### START CODE HERE ###
     # clip to mitigate exploding gradients, loop over [dWax, dWaa, dWya, db, dby]. (≈2 lines)
     for gradient in [dWax, dWaa, dWya, db, dby]:
         np.clip(gradient, -maxValue, maxValue, gradient)
-    ### END CODE HERE ###
 
     gradients = {"dWaa": dWaa, "dWax": dWax, "dWya": dWya, "db": db, "dby": dby}
 
@@ -47,7 +42,6 @@ def sample(parameters, char_to_ix, seed):
     vocab_size = by.shape[0]
     n_a = Waa.shape[1]
 
-    ### START CODE HERE ###
     # Step 1: Create the one-hot vector x for the first character (initializing the sequence generation). (≈1 line)
     x = np.zeros((vocab_size, 1))
     # Step 1': Initialize a_prev as zeros (≈1 line)
@@ -75,8 +69,7 @@ def sample(parameters, char_to_ix, seed):
         np.random.seed(counter + seed)
 
         # Step 3: Sample the index of a character within the vocabulary from the probability distribution y
-        vocab_idx = np.arange(0, vocab_size, 1)
-        idx = np.random.choice(vocab_idx, p=y.ravel())
+        idx = np.random.choice(range(vocab_size), p=y.ravel())
 
         # Append the index to "indices"
         indices.append(idx)
@@ -91,8 +84,6 @@ def sample(parameters, char_to_ix, seed):
         # for grading purposes
         seed += 1
         counter += 1
-
-    ### END CODE HERE ###
 
     if (counter == 50):
         indices.append(char_to_ix['\n'])

@@ -1,7 +1,10 @@
 import unittest
 import numpy as np
+import os
 from languagemodel.model import clip
 from languagemodel.model import sample
+
+THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 
 class LanguageModelText(unittest.TestCase):
 
@@ -33,7 +36,7 @@ class LanguageModelText(unittest.TestCase):
         np.random.seed(2)
         _, n_a = 20, 100
 
-        data = open('data/names.data', 'r').read()
+        data = open(os.path.join(THIS_DIR, 'data/names.data'), 'r').read()
         data = data.lower()
         chars = list(set(data))
         data_size, vocab_size = len(data), len(chars)
@@ -41,6 +44,7 @@ class LanguageModelText(unittest.TestCase):
 
         char_to_ix = {ch: i for i, ch in enumerate(sorted(chars))}
         ix_to_char = {i: ch for i, ch in enumerate(sorted(chars))}
+        print(ix_to_char)
 
         Wax, Waa, Wya = np.random.randn(n_a, vocab_size), np.random.randn(n_a, n_a), np.random.randn(vocab_size, n_a)
         b, by = np.random.randn(n_a, 1), np.random.randn(vocab_size, 1)
@@ -49,4 +53,11 @@ class LanguageModelText(unittest.TestCase):
         indices = sample(parameters, char_to_ix, 0)
         print("Sampling:")
         print("list of sampled indices:", indices)
-        print("list of sampled characters:", [ix_to_char[i] for i in indices])
+        sampled_chars = [ix_to_char[i] for i in indices]
+        print("list of sampled characters:", sampled_chars)
+
+        sampled_chars_expected = ['l', 'q', 'x', 'n', 'm', 'i', 'j', 'v', 'x', 'f', 'm', 'k', 'l', 'f', 'u', 'o', 'u', 'n', 'c', 'b', 'a', 'u',
+         'r', 'x', 'g', 'y', 'f', 'y', 'r', 'j', 'p', 'b', 'c', 'h', 'o', 'l', 'k', 'g', 'a', 'l', 'j', 'b', 'g', 'g',
+         'k', 'q', 'x', 'l', 'c', '\n', '\n']
+
+        assert(sampled_chars == sampled_chars_expected)

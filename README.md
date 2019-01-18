@@ -306,3 +306,5 @@ Online version of the original Coursera Python Notebook:
 [Basic LSTM cell](rnn/lstm_cell_forward.py)
 
 [Forward propagation with LSTM](rnn/lstm_forward.py)
+
+[Language model and sequence sampling](languagemodel/model.py)
