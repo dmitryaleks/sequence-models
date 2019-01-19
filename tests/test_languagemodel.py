@@ -3,6 +3,7 @@ import numpy as np
 import os
 from languagemodel.model import clip
 from languagemodel.model import sample
+from languagemodel.model import model
 
 THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -57,3 +58,5 @@ class LanguageModelText(unittest.TestCase):
         print("list of sampled characters:", sampled_chars)
 
         assert(sampled_chars[0] == 'l')
+
+        parameters = model(data, ix_to_char, char_to_ix)
