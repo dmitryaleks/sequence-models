@@ -308,3 +308,50 @@ Online version of the original Coursera Python Notebook:
 [Forward propagation with LSTM](rnn/lstm_forward.py)
 
 [Language model and sequence sampling](languagemodel/model.py)
+
+
+### NLP and Word Embeddings
+
+>https://www.coursera.org/learn/nlp-sequence-models/lecture/6Oq70/word-representation>
+
+#### Word representation
+
+The standard way of representing words is a one-hot verctor over a vocabuary of words.
+
+The down side of this approach is that algorithm cannot generalize beyond a single word and learn similarities between words as each word is separated from the rest of them by representation, as by definition there are no common elements to two vectors representing any two different words.
+
+Instead it is possible to represent words usian an alternative featurized representations.
+
+![Words representation: featurized representation](docs/img/words-representation-featurized.png)
+
+Based on the above, a single word can be represented as a vector of features, where each value denotes the degree to which a given feature can be attributed to a given word.
+
+This appreach is similar to that of a Word2Vec:
+<https://en.wikipedia.org/wiki/Word2vec>
+
+Introduction to Word2Vec:
+<https://towardsdatascience.com/introduction-to-word-embedding-and-word2vec-652d0c2060fa>
+
+Word2Vec white paper:
+<https://arxiv.org/pdf/1310.4546.pdf>
+
+#### Word embeddings
+
+
+We say we embed a word when we get a word a map (embed) it into an N-dimensional space of features (governed by N unique features).
+
+Note that it is sometimes convenient to reduce dimensionality of the feature space to visualize it. E.g. t-SNE (t-Distributed Stochastic Neighbor Embedding) algorithm allows reducing a 300 dimensional feature space to a 2D space for visualization purposes. It often happens that related words tend to appear close to each other spatially.
+
+<https://lvdmaaten.github.io/tsne>
+
+![Words representation: word embedding](docs/img/word-embedding.png)
+
+Formal definition is as follows:
+
+<https://en.wikipedia.org/wiki/Word_embedding>
+
+"Word embedding is the collective name for a set of language modeling and feature learning techniques in natural language processing (NLP) where words or phrases from the vocabulary are mapped to vectors of real numbers. Conceptually it involves a mathematical embedding from a space with one dimension per word to a continuous vector space with a much lower dimension.
+
+Methods to generate this mapping include neural networks, dimensionality reduction on the word co-occurrence matrix, probabilistic models, explainable knowledge base method, and explicit representation in terms of the context in which words appear.
+
+Word and phrase embeddings, when used as the underlying input representation, have been shown to boost the performance in NLP tasks such as syntactic parsing and sentiment analysis."
