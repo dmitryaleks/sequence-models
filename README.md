@@ -338,7 +338,7 @@ Word2Vec white paper:
 #### Word embeddings
 
 
-We say we embed a word when we get a word a map (embed) it into an N-dimensional space of features (governed by N unique features).
+We say we embed a word when we get a word and map (embed) it into an N-dimensional space of features (governed by N unique features).
 
 Note that it is sometimes convenient to reduce dimensionality of the feature space to visualize it. E.g. t-SNE (t-Distributed Stochastic Neighbor Embedding) algorithm allows reducing a 300 dimensional feature space to a 2D space for visualization purposes. It often happens that related words tend to appear close to each other spatially.
 
@@ -355,3 +355,46 @@ Formal definition is as follows:
 Methods to generate this mapping include neural networks, dimensionality reduction on the word co-occurrence matrix, probabilistic models, explainable knowledge base method, and explicit representation in terms of the context in which words appear.
 
 Word and phrase embeddings, when used as the underlying input representation, have been shown to boost the performance in NLP tasks such as syntactic parsing and sentiment analysis."
+
+#### Transfer Learning and word embeddings
+
+"Transfer learning is a research problem in machine learning that focuses on storing knowledge gained while solving one problem and applying it to a different but related problem."
+
+Word embeddings learned on a large corpus of text can be used on a new smaller training set of the new problem.
+
+#### Analogies Reasoning
+
+With word embeddings we can answer questions like:
+
+```
+"man is to woman is what king is to X"
+```
+
+![Analogy Reasoning](docs/img/word-embeddings-analogies-reasoning.png)
+
+The algorithm for the analogic reasoning is based on finding the solution to the following equasion:
+
+
+```
+find word w(i) such that: argmax( similarity(e(w), e(king) - e(man) + e(woman)) )
+```
+
+![Analogy Reasoning Algorithm](docs/img/word-embeddings-analogies-reasoning-algorithm.png)
+
+#### Similarity Functions
+
+Most common similarity function is Cosine Similarity:
+
+```
+sim(u,v) = (transpose(u)*v)/(eucld_len(u)*euclid_len(v))
+```
+
+This is effectively a cosine of the anlge between two vectors. If the anle is zero - the cosine is one (i.e. maximum).
+
+![Cosine Similarity](docs/img/word-embeddings-cosine-similarity.png)
+
+#### Embedding Matrix
+
+Embedding Martix is a learned matrix that has features of words as rows and contrete words as columns, where values in the matrix are degrees to which a given feature pertains to a given word.
+
+![Embedding Matrix](docs/img/word-embeddings-embedding-matrix.png)
