@@ -398,3 +398,22 @@ This is effectively a cosine of the anlge between two vectors. If the anle is ze
 Embedding Martix is a learned matrix that has features of words as rows and contrete words as columns, where values in the matrix are degrees to which a given feature pertains to a given word.
 
 ![Embedding Matrix](docs/img/word-embeddings-embedding-matrix.png)
+
+#### Learning Word Embeddings
+
+One way to lear word embeddings from the Language Model and a large corpus of text:
+
+  - start with a randomly initialised embedding matrix E that transforms a given word into an embedding (vector of features);
+  - use the same embedding matrix E to transform all words in a window (the context) into embeddings;
+  - use the word that follows the window as the label (the target);
+  - train ANN using a gradient descent to find the right coefficients in the Embedding Matrix E.
+
+This algorithm will be incentivised to come up with similar embeddings for similar words.
+
+![Learning Word Embeddings with ANN](docs/img/word-embeddings-learning-ann.png)
+
+#### Skip-gram
+
+For a real Language Model it is beneficial to learn the target word from a window of context words.
+
+However, research has found that to learn Word Embeddings it is enough to use the a nearby one word. This approach is called Skip-gram.
