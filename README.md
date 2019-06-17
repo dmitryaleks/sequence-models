@@ -417,3 +417,15 @@ This algorithm will be incentivised to come up with similar embeddings for simil
 For a real Language Model it is beneficial to learn the target word from a window of context words.
 
 However, research has found that to learn Word Embeddings it is enough to use the a nearby one word. This approach is called Skip-gram.
+
+Here is how we can learn word embeddings by training a Skip-gram model:
+
+![Skip-gram model](docs/img/word-embeddings-skipgram-model.png)
+
+Softmax classifier is computationally expensive to train as it requires taking a sum over all categories each time denominator is computed. Alternative is a so called Hierarchical Softmax, which splits the set of categories as a binary tree (scales as a log function of the number of categories). In a Hierarchical Softmax it is beneficial to have popular words to be at the top of the tree.
+
+##### How to sample the context to select the context word?
+
+We want to avoid our training set being dominated by frequently occuring words like: "the", "a", "and", etc.
+
+There are heuristics that allow us to sample the context in a way where we select less common words as often as those that occur frequently.
