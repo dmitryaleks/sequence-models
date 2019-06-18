@@ -429,3 +429,31 @@ Softmax classifier is computationally expensive to train as it requires taking a
 We want to avoid our training set being dominated by frequently occuring words like: "the", "a", "and", etc.
 
 There are heuristics that allow us to sample the context in a way where we select less common words as often as those that occur frequently.
+
+#### Negative Sampling
+
+General definition:
+
+```
+Negative sampling. Negative sampling idea is based on the concept of noise contrastive estimation (similarly, as generative adversarial networks), which persists, that a good model should differentiate fake signal from the real one by the means of logistic regression.
+```
+
+Algorithm:
+  - select a context word and a real target word (E.g. the next one) from some sentence and give it a label "1";
+  - pick (k-1) random target words for the same context word and give them lable "0" (E.g. where k = 5).
+
+![Negative Sampling](docs/img/word-embeddings-negative-sampling.png)
+
+Then we solve a Logistic Regression problem for each target word.
+
+So essentially instead of training a computationally expensive Softmax that has N elements to it (N is the size of the vocabulary), we are training N binary classifiers, which are faster to train.
+
+![Negative Sampling: Training a Model](docs/img/word-embeddings-negative-sampling-algorithm.png)
+
+##### Sampling Negative Examples
+
+We pick a given target words using a probabilistic heuristic:
+
+```
+P(w) = (frequency(w)^(3/4))/SUM(frequency(words)^(3/4))
+```
