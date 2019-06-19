@@ -457,3 +457,11 @@ We pick a given target words using a probabilistic heuristic:
 ```
 P(w) = (frequency(w)^(3/4))/SUM(frequency(words)^(3/4))
 ```
+
+#### GloVe (Global vectors for word representation) algorithm
+
+We first go through the training set corpus and for each pair of words calculate how often word A appears in the context (vicinity) of word B.
+
+Then GloVe algorithm finds word embeddings by optimizing the following objective:
+
+![GloVe algorithm](docs/img/word-embeddings-glove-algorithm.png)
