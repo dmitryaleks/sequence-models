@@ -465,3 +465,27 @@ We first go through the training set corpus and for each pair of words calculate
 Then GloVe algorithm finds word embeddings by optimizing the following objective:
 
 ![GloVe algorithm](docs/img/word-embeddings-glove-algorithm.png)
+
+#### Sentiment Classification
+
+This is a task of looking at a text and figuring out whether whoever wrote it likes or dislikes the thing they are talking about.
+
+Sentiment can be classified in two or more categories, E.g. like/dislike or a five-star rating scale respectively.
+
+##### Simple Model for Sentiment Classification
+
+We can train a simple model on a labeled training set as follows:
+
+  - take an embedding on each word in the text based on previously learned word embeddings matrix;
+  - calculate an averaged embedding vector of all words in the text;
+  - pass the averaged embedding vector to a Softmax to produce the predicted sentiment category.
+
+![Sentiment Classification: Simple Model](docs/img/word-embeddings-sentiment-classification-simple-model.png)
+
+The problem of this simplistic algoirthm is that it completely disregards the order of words, so something like "lacks a good taste and good atmosphere" would gravitate towards a positive sentiment due to the word "good" occuring twice.
+
+##### RNN for Sentiment Classification
+
+Applying RNN allows us to respect the order of words in a sentence.
+
+![Sentiment Classification: RNN](docs/img/word-embeddings-sentiment-classification-rnn.png)
