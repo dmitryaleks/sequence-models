@@ -523,3 +523,23 @@ We can build a model as follows:
 A CNN can be trained to output a vector that can, instead of a Softmax, then be fed into a decoder that would produce a textual caption for a picture, E.g. as in the following architecture:
 
 ![Sequence to Sequence: Image Captioning](docs/img/sequence-to-sequence-image-captioning.png)
+
+#### Finding the most likely sentence
+
+In machine translation we want to find the most likely translation by maximising the probability function that tells that a sentence in a target language comes from the given sentence in a source language.
+
+Machine translation can be posed as a Conditional Language Model problem. It has an encoder in front of decoder, while Language Model starts with a decoder. Instead of generating words based on an input vector of zeros, it takes an input sentence, pipes it though the encoder to get a representation vector, and then feeds this vector to a decoder.
+
+![Machine Translation as a Conditional Language Model](docs/img/sequence-to-sequence-machine-translation-conditional-language-model.png)
+
+### Beam Search
+
+Beam Search is an algorithm that allows finding the most likely sentence. In a more general sense beam search is a heuristic search algorithm that explores a graph by expanding the most promising node in a limited set.
+
+It has a beam width parameter (E.g. B = 3). In each step we examing each input word and find three most likely words that come after it given the underlying input sentence in the source language.
+
+![Machine Translation: Beam Search](docs/img/sequence-to-sequence-machine-translation-beam-search.png)
+
+With Beam Search we always consider and evaluate B (E.g. B = 3) most likely possibilities for each node (word):
+
+![Machine Translation: Beam Search Iterations](docs/img/sequence-to-sequence-machine-translation-beam-search-iterations.png)
