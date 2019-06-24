@@ -489,3 +489,37 @@ The problem of this simplistic algoirthm is that it completely disregards the or
 Applying RNN allows us to respect the order of words in a sentence.
 
 ![Sentiment Classification: RNN](docs/img/word-embeddings-sentiment-classification-rnn.png)
+
+#### Debiasing Word Embeddings
+
+Bias may get introduced into learned word embeddings in case it is present in the underlying text corpus.
+
+Addressing bias in word embedings entails:
+
+  - identify bias direction in embeddings space by examining differences between pairs of words (E.g. "he" and "she");
+  - calculate the direction of the no-bias axis for a given type of bias by taking a difference between two words from step #1;
+  - neutralize: for every word that is not definitional (those that do not have inherent gender component to them), project it to a no-bias axis to get rid of bias.
+  - equalize pairs of words: make sure that words like grandmother and grandfather are at equal distance from non-definitional words that are supposed to be gender neutral, E.g. a babysitter.
+
+![Debiasing Word Embeddings](docs/img/word-embeddings-eleminating-bias.png)
+
+## Sequence to Sequence models
+
+### Basic models
+
+#### Machine translation
+
+Let's consider an example in which we translate a sentence from French language to English.
+
+We can build a model as follows:
+
+  - start with an encoder network that takes French words as an input - it will be trained to output the vector that represents the input sentence;
+  - the vector output by the encoder is then fed into the decoder network, wich outputs the translated sentence token-by-token, feeding forward translated tokens to next steps.
+
+![Sequence to Sequence: Machine Translation](docs/img/sequence-to-sequence-machine-translation.png)
+
+#### Image captioning
+
+A CNN can be trained to output a vector that can, instead of a Softmax, then be fed into a decoder that would produce a textual caption for a picture, E.g. as in the following architecture:
+
+![Sequence to Sequence: Image Captioning](docs/img/sequence-to-sequence-image-captioning.png)
