@@ -543,3 +543,17 @@ It has a beam width parameter (E.g. B = 3). In each step we examing each input w
 With Beam Search we always consider and evaluate B (E.g. B = 3) most likely possibilities for each node (word):
 
 ![Machine Translation: Beam Search Iterations](docs/img/sequence-to-sequence-machine-translation-beam-search-iterations.png)
+
+Performance of Beam search depends on the hyper-parameter B (beam width). Typically we would expect to see a significant performance improvement when going from B = 1 to B = 3 and B = 10, however, going from B = 1000 to B = 3000, though it is computationally expensive, leads to a small performance improvement.
+
+#### Error Analysis for Beam Search
+
+It is important to be able to tell whether it is the Beam Search that is at fault with regard to a given mis-translation, or it is the RNN.
+In order to do so we can take a mistraslated sentence and check whether the probability of the correct translation is higher than that of a mistranslation as seen by RNN:
+
+  - if it is higher, thatn Beam Search has selected a wrong translation;
+  - otherwise, we have a case where RNN predicted a lower probability for the correct translation.
+
+![Beam Search: Error Analysis](docs/img/sequence-to-sequence-machine-translation-beam-search-error-analysis.png)
+
+By analysing errors in the Development Set, we can figure out where the majority of errors is coming from, and therefore focus on optimizing corresponding componenet.
