@@ -557,3 +557,23 @@ In order to do so we can take a mistraslated sentence and check whether the prob
 ![Beam Search: Error Analysis](docs/img/sequence-to-sequence-machine-translation-beam-search-error-analysis.png)
 
 By analysing errors in the Development Set, we can figure out where the majority of errors is coming from, and therefore focus on optimizing corresponding componenet.
+
+### Bleu score (Bilingual Evaluation Understudy)
+
+This is a method for automatic evaluation of machine translation.
+
+In instance of a machine translation is evaluate based on its Bleu Score which is a distance to human-provided translations for the same source sentence.
+
+We could use a trivial metric called Modified Precision to evaluate the quality of Machine Translation. We examine each word in the MT sentence and give ourselves credit if it appears in a human-translated sentence, but make sure to limit the credit to the amount of occurences of a given word in the human-translated sentence, E.g. as follows:
+
+![Evaluating Machine Translation: Modified Precision](docs/img/sequence-to-sequence-machine-translation-modified-precision.png)
+
+Belu Score, on the other hand, operates on bigrams (pairs of words) - we give MT translation a credit only if a bigram appears in one of the reference translations done by a human:
+
+![Evaluating Machine Translation: Bleu Score](docs/img/sequence-to-sequence-machine-translation-bleu-score-bigrams.png)
+
+Going further, Blue Score is evaluated on n-grams.
+
+Combined Bleu Score is calculated as follows. Note that BP (Brevity Penalty) that penalizes translations that are too short (as they would otherwise end up with unfairly high scores):
+
+![Evaluating Machine Translation: Combined Bleu Score](docs/img/sequence-to-sequence-machine-translation-combined-bleu-score.png)
