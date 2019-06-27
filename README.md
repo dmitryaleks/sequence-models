@@ -577,3 +577,22 @@ Going further, Blue Score is evaluated on n-grams.
 Combined Bleu Score is calculated as follows. Note that BP (Brevity Penalty) that penalizes translations that are too short (as they would otherwise end up with unfairly high scores):
 
 ![Evaluating Machine Translation: Combined Bleu Score](docs/img/sequence-to-sequence-machine-translation-combined-bleu-score.png)
+
+### Attention Model
+
+"The seq2seq models is normally composed of an encoder-decoder architecture, where the encoder processes the input sequence and encodes/compresses/summarizes the information into a context vector (also called as the “thought vector”) of a fixed length. This representation is expected to be a good summary of the entire input sequence. The decoder is then initialized with this context vector, using which it starts generating the transformed output.
+
+A critical and apparent disadvantage of this fixed-length context vector design is the incapability of the system to remember longer sequences."
+
+With Attention Model we are training a bi-directional RNN to learn Attention Weights which indicate how much attention the model should pay to certain input words when producing a target word.
+
+![Attention Model Intuition](docs/img/sequence-to-sequence-machine-translation-attention-model-intuition.png)
+
+### Speech Recognition
+
+Problem: given an audio clip x produce a transcript y.
+
+CTC cost for speech recognition (Connectionist temporal classification): we get a time series of frequencies as an input and train an RNN to produce a time series of characters. Since sampling rate of audio frequencies is quite high - not every input frequency will correspond to a singe character, so we will often have strides of the same character that we can collapse to obtain the resulting transcript.
+
+
+![Speech Recognition: CTC Cost](docs/img/sequence-to-sequence-speech-recognition-ctc-cost.png)
